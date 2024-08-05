@@ -35,11 +35,8 @@ def main():
                 st.subheader(f"Data from {file_name}")
                 st.dataframe(info['data'])
                 
-                st.write("Empty Rows Percentage:")
-                st.dataframe(info['empty_rows_percentage'])
-                
-                st.write("Data Types:")
-                st.dataframe(info['data_types'])
+                st.write("Data Analysis:")
+                st.dataframe(info['analysis'])
         else:
             st.write("No data to display")
     else:

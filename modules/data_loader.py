@@ -11,10 +11,16 @@ def load_data(data_dir, selected_files):
             data = pd.read_excel(file_path)
             empty_rows_percentage = data.isnull().mean() * 100
             data_types = data.dtypes
+            
+            # Combine empty rows percentage and data types into one DataFrame
+            analysis_df = pd.DataFrame({
+                'Empty Rows Percentage': empty_rows_percentage,
+                'Data Type': data_types
+            })
+            
             data_frames[file_name] = {
                 'data': data,
-                'empty_rows_percentage': empty_rows_percentage,
-                'data_types': data_types
+                'analysis': analysis_df
             }
         else:
             st.error(f"Data file not found: {file_path}")
