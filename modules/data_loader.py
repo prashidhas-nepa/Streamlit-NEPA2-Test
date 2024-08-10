@@ -6,9 +6,11 @@ def load_data(data_dir, selected_files):
     data_frames = {}
     for file_name in selected_files:
         file_path = os.path.join(data_dir, file_name)
-        st.write(f"Loading file: {file_path}")
+        st.write(f"Constructed file path: {file_path}")  # Debug: Check the file path
+        print(f"Constructed file path: {file_path}")  # Print to stdout for debugging
         if os.path.exists(file_path):
             data = pd.read_excel(file_path)
+            data['Date'] = pd.to_datetime(data['Date'])  # Use 'Date' as the date column name
             empty_rows_percentage = data.isnull().mean() * 100
             data_types = data.dtypes
             
@@ -24,4 +26,5 @@ def load_data(data_dir, selected_files):
             }
         else:
             st.error(f"Data file not found: {file_path}")
+            print(f"Data file not found: {file_path}")  # Print to stdout for debugging
     return data_frames

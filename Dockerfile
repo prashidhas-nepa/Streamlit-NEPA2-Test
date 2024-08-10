@@ -1,5 +1,5 @@
 # Use the official Python image as the base image
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,10 +11,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code to the working directory
-COPY . .
+COPY . /app
 
 # Expose the port Streamlit will run on
-EXPOSE 4370
+EXPOSE 8501
 
-# Command to run the Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=4370", "--server.address=0.0.0.0"]
+# Command to run the Streamlit app on port 8501
+ENTRYPOINT [ "streamlit", "run" ]
+CMD ["app.py"]
