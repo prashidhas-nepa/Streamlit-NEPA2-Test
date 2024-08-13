@@ -26,6 +26,30 @@ def main():
         st.error("DATA_PATH environment variable is not set.")
         return
 
+    # Sidebar with multiple sections/pages
+    page = st.sidebar.selectbox(
+        "Select Section",
+        ["Marketing", "Salesperson", "Inventory Management"]
+    )
+
+    if page == "Marketing":
+        st.sidebar.header("Marketing Tools")
+        # Add marketing-related options or tools
+        st.sidebar.write("Add your marketing tools or options here.")
+        # Example: Add more filters specific to marketing
+
+    elif page == "Salesperson":
+        st.sidebar.header("Salesperson Tools")
+        # Add salesperson-related options or tools
+        st.sidebar.write("Add your salesperson tools or options here.")
+        # Example: Add more filters specific to sales
+
+    elif page == "Inventory Management":
+        st.sidebar.header("Inventory Management Tools")
+        # Add inventory-related options or tools
+        st.sidebar.write("Add your inventory management tools or options here.")
+        # Example: Add more filters specific to inventory management
+
     # Automatically get selected files from the directory
     selected_files = get_selected_files()
 
@@ -104,7 +128,7 @@ def main():
             daily_sales.display_daily_sales(filtered_data)
 
         with tab4:
-            daily_product_sales.display_product_sales(filtered_data)
+            product_sales.display_product_sales(filtered_data)
 
 def filter_data(data, start_date, end_date):
     mask = (data['Date'] >= pd.to_datetime(start_date)) & (data['Date'] <= pd.to_datetime(end_date))
